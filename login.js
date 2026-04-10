@@ -1,6 +1,6 @@
 function login(username, password) {
   if (username && password) {
-    return "Login successfu!l";
+    return "Login successful!";
   }
   return "Invalid credentials";
 }
