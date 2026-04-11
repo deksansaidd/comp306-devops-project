@@ -1,0 +1,21 @@
+{
+  "name": "comp306-devops-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dashboard.js",
+ "scripts": {
+   "test": "jest"
+ },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/deksansaidd/comp306-devops-project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/deksansaidd/comp306-devops-project/issues"
+  },
+  "homepage": "https://github.com/deksansaidd/comp306-devops-project#readme"
+}
