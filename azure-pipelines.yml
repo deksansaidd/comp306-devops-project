@@ -43,12 +43,12 @@ stages:
           - script: npm install
             displayName: 'Install dependencies'
           - script: |
-              npx sonar-scanner \
+              npx sonar-scanner@3.1.0 \
                 -Dsonar.projectKey=$(SONAR_PROJECT_KEY) \
                 -Dsonar.organization=$(SONAR_ORGANIZATION) \
                 -Dsonar.sources=. \
                 -Dsonar.host.url=https://sonarcloud.io \
-                -Dsonar.login=$(SONAR_TOKEN)
+                -Dsonar.token=$(SONAR_TOKEN)
             displayName: 'Run SonarQube analysis'
 
   - stage: Deliver
