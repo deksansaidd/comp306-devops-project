@@ -3,7 +3,7 @@ trigger:
 
 pool:
   name: 'Default'
-  
+
 stages:
 
   - stage: Build
@@ -12,22 +12,14 @@ stages:
       - job: BuildJob
         displayName: 'Build and Test'
         steps:
-
           - task: NodeTool@0
             inputs:
               versionSpec: '18.x'
             displayName: 'Install Node.js'
-
           - script: npm install
             displayName: 'Install dependencies'
-
           - script: npm test -- --coverage --coverageReporters=lcov cobertura
             displayName: 'Run unit tests with coverage'
-
-          - task: PublishCodeCoverageResults@2
-            inputs:
-              summaryFileLocation: 'coverage/cobertura-coverage.xml'
-            displayName: 'Publish coverage report'
 
   - stage: CodeAnalysis
     displayName: 'SonarQube Analysis'
@@ -40,15 +32,10 @@ stages:
           - task: NodeTool@0
             inputs:
               versionSpec: '18.x'
+            displayName: 'Install Node.js'
           - script: npm install
             displayName: 'Install dependencies'
-          - script: |
-              npx sonar-scanner@3.1.0 \
-                -Dsonar.projectKey=$(SONAR_PROJECT_KEY) \
-                -Dsonar.organization=$(SONAR_ORGANIZATION) \
-                -Dsonar.sources=. \
-                -Dsonar.host.url=https://sonarcloud.io \
-                -Dsonar.token=$(SONAR_TOKEN)
+          - script: npx sonar-scanner -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$(SONAR_TOKEN) -Dsonar.projectKey=$(SONAR_PROJECT_KEY) -Dsonar.organization=$(SONAR_ORGANIZATION)
             displayName: 'Run SonarQube analysis'
 
   - stage: Deliver
@@ -60,6 +47,7 @@ stages:
           - task: NodeTool@0
             inputs:
               versionSpec: '18.x'
+            displayName: 'Install Node.js'
           - script: npm install
             displayName: 'Install dependencies'
           - script: npm pack
