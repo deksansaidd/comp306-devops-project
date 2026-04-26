@@ -1,5 +1,5 @@
 function closeNav() {
-  return "Nav closed";
+    return "Navigation closed successfully";
 }
 
 module.exports = closeNav;
